@@ -98,3 +98,122 @@ code { font-family: var(--font-mono); }
 @media (max-width: 480px) {
   .nav-links a:not(.nav-github) { display: none; }
 }
+
+/* ---------- hero ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 36px;
+  padding: 56px 40px;
+}
+
+.hero-copy { flex: 1; min-width: 280px; }
+
+.hero h1 {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 32px;
+  line-height: 1.25;
+}
+
+.hero-sub {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.install-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--panel-alt);
+  border: 1px solid var(--raspberry);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.prompt { color: var(--green); }
+
+.copy-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.copy-btn:hover { color: var(--text); }
+
+.copy-btn.copied { color: var(--green); }
+
+.install-pill .copy-btn {
+  border-left: 1px solid var(--border);
+  padding-left: 12px;
+}
+
+.hero-meta {
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.hero-terminal { flex: 1.2; min-width: 300px; }
+
+.terminal {
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .5);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--panel-alt);
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-raspberry { background: var(--raspberry); }
+.dot-green { background: var(--green); }
+.dot-grey { background: var(--border); }
+
+.terminal-title {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.terminal-body {
+  margin: 0;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.85;
+  overflow-x: auto;
+}
+
+/* ---------- terminal color utilities (reused by quick-start blocks) ---------- */
+.green { color: var(--green); }
+.raspberry { color: var(--raspberry); }
+.muted { color: var(--muted); }
+.faint { color: var(--faint); }
+.amber { color: var(--amber); }
+
+/* ---------- responsive: hero ---------- */
+@media (max-width: 640px) {
+  .hero { padding: 40px 20px; }
+  .hero h1 { font-size: 26px; }
+  .hero-terminal { min-width: 0; width: 100%; }
+}

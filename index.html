@@ -25,7 +25,36 @@
   </nav>
 </header>
 <main>
-  <!-- hero: Task 2 -->
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Deploy to your Raspberry&nbsp;Pi with <span class="accent">one command</span>.</h1>
+      <p class="hero-sub">rpi-deploy builds and runs your Docker Compose projects on the Pi — over plain SSH. No registry, no Kubernetes, no YAML pipelines.</p>
+      <div class="install-pill">
+        <code><span class="prompt">$</span> npm install -g rpi-deploy</code>
+        <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy install command">⧉</button>
+      </div>
+      <p class="hero-meta">MIT · prebuilt binaries · Linux / macOS / Windows · <img class="badge" src="https://img.shields.io/npm/v/rpi-deploy?style=flat-square&amp;label=npm&amp;labelColor=161b22&amp;color=30363d" alt="npm version"></p>
+    </div>
+    <div class="hero-terminal">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-raspberry"></span>
+          <span class="dot dot-green"></span>
+          <span class="dot dot-grey"></span>
+          <span class="terminal-title">~/my-app</span>
+        </div>
+        <pre class="terminal-body"><span class="green">$</span> rpi deploy
+<span class="green">●</span> config    rpi.toml <span class="muted">(my-app → pi)</span>
+<span class="green">●</span> tunnel    ssh pi@raspberrypi.local
+<span class="green">●</span> fetch     main @ 4f2a91c
+<span class="raspberry">⠧</span> build     docker compose build…
+<span class="faint">│ #12 exporting layers</span>
+<span class="faint">│ #12 naming to my-app-web…</span>
+<span class="green">●</span> healthy   GET / → 200 <span class="muted">(1.2s)</span>
+<span class="green">✓</span> deployed  https://app.example.com <span class="muted">42s</span></pre>
+      </div>
+    </div>
+  </section>
   <!-- how it works + features: Task 3 -->
   <!-- quick start + dogfooding: Task 4 -->
 </main>
