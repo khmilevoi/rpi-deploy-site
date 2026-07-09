@@ -139,6 +139,10 @@ code { font-family: var(--font-mono); }
 .prompt { color: var(--green); }
 
 .copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3em;
   background: none;
   border: none;
   padding: 0;
