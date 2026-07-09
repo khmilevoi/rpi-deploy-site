@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rpi-deploy landing — approved mockup (2026-07-09)</title>
+<style>body{margin:0;background:#0b0d10}</style>
+</head>
+<body>
+<!-- Approved brainstorming mockup, Terminal-first direction.
+     Reference for implementation in the rpi-deploy-site repo; see
+     2026-07-09-landing-page-design.md. Inline styles are intentional
+     (mockup artifact, not production code). -->
+<div style="background:#0b0d10;font-family:'Segoe UI',system-ui,sans-serif">
+
+  <!-- nav -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid #1c2128;position:sticky;top:0;background:#0b0d10">
+    <span style="font-family:Consolas,monospace;color:#e6edf3;font-size:15px;font-weight:700"><span style="color:#C51A4A">▸</span> rpi-deploy</span>
+    <span style="font-family:Consolas,monospace;font-size:12px;color:#8b949e">how it works&nbsp;&nbsp;&nbsp;features&nbsp;&nbsp;&nbsp;quick start&nbsp;&nbsp;&nbsp;<span style="color:#e6edf3;border:1px solid #30363d;border-radius:6px;padding:5px 10px">GitHub ★</span></span>
+  </div>
+
+  <!-- hero -->
+  <div style="display:flex;gap:36px;padding:56px 40px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px">
+      <h1 style="font-family:Consolas,monospace;color:#e6edf3;font-size:32px;line-height:1.25;margin:0 0 14px">Deploy to your Raspberry&nbsp;Pi with <span style="color:#C51A4A">one command</span>.</h1>
+      <p style="color:#8b949e;font-size:14.5px;line-height:1.6;margin:0 0 22px">rpi-deploy builds and runs your Docker Compose projects on the Pi — over plain SSH. No registry, no Kubernetes, no YAML pipelines.</p>
+      <div style="display:inline-flex;align-items:center;gap:12px;background:#161b22;border:1px solid #C51A4A;border-radius:6px;padding:11px 16px;font-family:Consolas,monospace;font-size:13px;color:#e6edf3">
+        <span style="color:#75A928">$</span> npm install -g rpi-deploy
+        <span style="color:#8b949e;border-left:1px solid #30363d;padding-left:12px">⧉</span>
+      </div>
+      <div style="margin-top:14px;font-family:Consolas,monospace;font-size:11px;color:#8b949e">MIT · prebuilt binaries · Linux / macOS / Windows · <span style="background:#161b22;border:1px solid #30363d;border-radius:3px;padding:1px 6px">npm v0.12.0</span></div>
+    </div>
+    <div style="flex:1.2;min-width:320px">
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.5)">
+        <div style="background:#161b22;padding:8px 12px;display:flex;gap:6px;align-items:center">
+          <span style="width:10px;height:10px;border-radius:50%;background:#C51A4A;display:inline-block"></span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#75A928;display:inline-block"></span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#30363d;display:inline-block"></span>
+          <span style="font-family:Consolas,monospace;font-size:11px;color:#8b949e;margin-left:8px">~/my-app</span>
+        </div>
+        <div style="padding:16px;font-family:Consolas,monospace;font-size:12.5px;line-height:1.85;color:#e6edf3">
+          <div><span style="color:#75A928">$</span> rpi deploy</div>
+          <div><span style="color:#75A928">●</span> config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rpi.toml <span style="color:#8b949e">(my-app → pi)</span></div>
+          <div><span style="color:#75A928">●</span> tunnel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ssh pi@raspberrypi.local</div>
+          <div><span style="color:#75A928">●</span> fetch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main @ 4f2a91c</div>
+          <div><span style="color:#C51A4A">⠧</span> build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;docker compose build…</div>
+          <div style="color:#484f58">│ #12 exporting layers</div>
+          <div style="color:#484f58">│ #12 naming to my-app-web…</div>
+          <div><span style="color:#75A928">●</span> healthy&nbsp;&nbsp;&nbsp;&nbsp;GET / → 200 <span style="color:#8b949e">(1.2s)</span></div>
+          <div><span style="color:#75A928">✓</span> deployed&nbsp;&nbsp;&nbsp;<span style="color:#e6edf3">https://app.example.com</span> <span style="color:#8b949e">42s</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- how it works -->
+  <div style="padding:48px 40px;border-top:1px solid #1c2128">
+    <div style="font-family:Consolas,monospace;font-size:12px;color:#C51A4A;letter-spacing:2px;margin-bottom:8px"># HOW IT WORKS</div>
+    <h2 style="font-family:Consolas,monospace;color:#e6edf3;font-size:22px;margin:0 0 28px">Two binaries, one SSH connection</h2>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch">
+      <div style="flex:1;min-width:200px;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:20px">
+        <div style="font-family:Consolas,monospace;color:#C51A4A;font-size:13px;margin-bottom:8px">[1] your machine</div>
+        <div style="color:#e6edf3;font-size:14px;font-weight:600;margin-bottom:6px">rpi CLI</div>
+        <div style="color:#8b949e;font-size:12.5px;line-height:1.55">Run <span style="font-family:Consolas,monospace;color:#e6edf3">rpi deploy</span> from your project. Works from a laptop or CI.</div>
+      </div>
+      <div style="display:flex;align-items:center;font-family:Consolas,monospace;color:#75A928;font-size:18px">──ssh──▸</div>
+      <div style="flex:1;min-width:200px;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:20px">
+        <div style="font-family:Consolas,monospace;color:#C51A4A;font-size:13px;margin-bottom:8px">[2] raspberry pi</div>
+        <div style="color:#e6edf3;font-size:14px;font-weight:600;margin-bottom:6px">rpi agent</div>
+        <div style="color:#8b949e;font-size:12.5px;line-height:1.55">A systemd daemon clones your repo, builds the Compose stack, allocates a stable port.</div>
+      </div>
+      <div style="display:flex;align-items:center;font-family:Consolas,monospace;color:#75A928;font-size:18px">──▸</div>
+      <div style="flex:1;min-width:200px;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:20px">
+        <div style="font-family:Consolas,monospace;color:#C51A4A;font-size:13px;margin-bottom:8px">[3] the internet</div>
+        <div style="color:#e6edf3;font-size:14px;font-weight:600;margin-bottom:6px">your app, live</div>
+        <div style="color:#8b949e;font-size:12.5px;line-height:1.55">Health-checked and reachable — via Cloudflare Tunnel or your own ingress.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- features -->
+  <div style="padding:48px 40px;border-top:1px solid #1c2128">
+    <div style="font-family:Consolas,monospace;font-size:12px;color:#C51A4A;letter-spacing:2px;margin-bottom:8px"># FEATURES</div>
+    <h2 style="font-family:Consolas,monospace;color:#e6edf3;font-size:22px;margin:0 0 28px">Everything a deploy needs, nothing it doesn't</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px">
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">01</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Latest-wins deploy queue</div><div style="color:#8b949e;font-size:12px;line-height:1.5">Push twice — the newest deploy wins, the stale one is cancelled.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">02</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Encrypted secrets</div><div style="color:#8b949e;font-size:12px;line-height:1.5">Env files and secret files (certs, keys) delivered as sealed bundles.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">03</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Cloudflare Tunnel ingress</div><div style="color:#8b949e;font-size:12px;line-height:1.5">A public hostname for your app without opening a single port.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">04</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Health checks</div><div style="color:#8b949e;font-size:12px;line-height:1.5">HTTP or TCP probes gate every deploy — broken builds never go live.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">05</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Stable port allocation</div><div style="color:#8b949e;font-size:12px;line-height:1.5">Each project keeps its host port across deploys. No conflicts.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">06</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Logs, stats, lifecycle</div><div style="color:#8b949e;font-size:12px;line-height:1.5">rpi logs -f, rpi stats, start/stop/restart — without leaving your shell.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">07</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">One-off commands</div><div style="color:#8b949e;font-size:12px;line-height:1.5">Migrations, backups, invites — declared in rpi.toml, run in the container.</div></div>
+      <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:18px"><div style="font-family:Consolas,monospace;color:#C51A4A;font-size:11px;margin-bottom:8px">08</div><div style="color:#e6edf3;font-size:13.5px;font-weight:600;margin-bottom:5px">Installs in seconds</div><div style="color:#8b949e;font-size:12px;line-height:1.5">Prebuilt binaries for Linux, macOS, Windows via npm. No Rust toolchain.</div></div>
+    </div>
+  </div>
+
+  <!-- quick start -->
+  <div style="padding:48px 40px;border-top:1px solid #1c2128">
+    <div style="font-family:Consolas,monospace;font-size:12px;color:#C51A4A;letter-spacing:2px;margin-bottom:8px"># QUICK START</div>
+    <h2 style="font-family:Consolas,monospace;color:#e6edf3;font-size:22px;margin:0 0 28px">Zero to deployed in four steps</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;align-items:stretch">
+      <div style="display:flex;flex-direction:column">
+        <div style="color:#8b949e;font-size:12.5px;margin-bottom:8px"><span style="font-family:Consolas,monospace;color:#75A928">1.</span> Install the CLI on your machine</div>
+        <div style="flex:1;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px 14px;font-family:Consolas,monospace;font-size:12px;color:#e6edf3;line-height:1.7"><span style="color:#75A928">$</span> npm install -g rpi-deploy<br><span style="color:#484f58"># prebuilt binary — no Rust toolchain</span><br><span style="color:#75A928">✓</span> rpi 0.12.0 <span style="color:#8b949e">(4s)</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div style="color:#8b949e;font-size:12.5px;margin-bottom:8px"><span style="font-family:Consolas,monospace;color:#75A928">2.</span> Set up the Pi</div>
+        <div style="flex:1;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px 14px;font-family:Consolas,monospace;font-size:12px;color:#e6edf3;line-height:1.7"><span style="color:#75A928">$</span> sudo rpi agent setup <span style="color:#484f58"># on the pi</span><br><span style="color:#75A928">$</span> rpi setup <span style="color:#484f58"># on your machine</span><br><span style="color:#75A928">✓</span> ready to deploy</div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div style="color:#8b949e;font-size:12.5px;margin-bottom:8px"><span style="font-family:Consolas,monospace;color:#75A928">3.</span> Describe your project</div>
+        <div style="flex:1;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px 14px;font-family:Consolas,monospace;font-size:12px;color:#e6edf3;line-height:1.7"><span style="color:#C51A4A">[project]</span><br>name = <span style="color:#75A928">"my-app"</span><br><span style="color:#C51A4A">[ingress]</span><br>service = <span style="color:#75A928">"web"</span><br>port = <span style="color:#d4a017">3000</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div style="color:#8b949e;font-size:12.5px;margin-bottom:8px"><span style="font-family:Consolas,monospace;color:#75A928">4.</span> Ship it</div>
+        <div style="flex:1;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:12px 14px;font-family:Consolas,monospace;font-size:12px;color:#e6edf3;line-height:1.7"><span style="color:#75A928">$</span> rpi deploy<br><span style="color:#C51A4A">⠧</span> build <span style="color:#8b949e">→</span> <span style="color:#75A928">●</span> healthy<br><span style="color:#75A928">✓</span> deployed <span style="color:#8b949e">42s</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- dogfooding -->
+  <div style="margin:0 40px;padding:26px 28px;border:1px solid #C51A4A;border-radius:8px;background:rgba(197,26,74,.06);display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:26px">🍓</span>
+    <div style="flex:1;min-width:260px">
+      <div style="color:#e6edf3;font-size:14px;font-weight:600;font-family:Consolas,monospace;margin-bottom:4px">This page practices what it preaches.</div>
+      <div style="color:#8b949e;font-size:12.5px;line-height:1.55">You're reading HTML served by nginx in a Docker container, deployed by <span style="font-family:Consolas,monospace;color:#e6edf3">rpi deploy</span>, running on a Raspberry Pi behind a Cloudflare Tunnel.</div>
+    </div>
+    <span style="font-family:Consolas,monospace;font-size:11px;color:#75A928;border:1px solid #75A928;border-radius:99px;padding:4px 12px">● live from a Pi</span>
+  </div>
+
+  <!-- footer -->
+  <div style="padding:36px 40px;margin-top:40px;border-top:1px solid #1c2128;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <span style="font-family:Consolas,monospace;font-size:12px;color:#8b949e"><span style="color:#C51A4A">▸</span> rpi-deploy · MIT license</span>
+    <span style="font-family:Consolas,monospace;font-size:12px;color:#8b949e">GitHub&nbsp;&nbsp;&nbsp;npm&nbsp;&nbsp;&nbsp;<span style="background:#161b22;border:1px solid #30363d;border-radius:3px;padding:1px 6px">npm v0.12.0</span></span>
+  </div>
+
+</div>
+</body>
+</html>
