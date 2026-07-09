@@ -125,7 +125,59 @@
       </div>
     </div>
   </section>
-  <!-- quick start + dogfooding: Task 4 -->
+  <section class="section" id="quick-start">
+    <p class="section-label"># QUICK START</p>
+    <h2>Zero to deployed in four steps</h2>
+    <div class="qs-grid">
+      <div class="qs-step">
+        <p class="qs-caption"><span class="qs-num">1.</span> Install the CLI on your machine</p>
+        <div class="qs-block">
+          <pre class="qs-code"><span class="green">$</span> npm install -g rpi-deploy
+<span class="faint"># prebuilt binary — no Rust toolchain</span>
+<span class="green">✓</span> rpi 0.12.0 <span class="muted">(4s)</span></pre>
+          <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy step 1 command">⧉</button>
+        </div>
+      </div>
+      <div class="qs-step">
+        <p class="qs-caption"><span class="qs-num">2.</span> Set up the Pi</p>
+        <div class="qs-block">
+          <pre class="qs-code"><span class="green">$</span> sudo rpi agent setup <span class="faint"># on the pi</span>
+<span class="green">$</span> rpi setup <span class="faint"># on your machine</span>
+<span class="green">✓</span> ready to deploy</pre>
+          <button type="button" class="copy-btn" data-copy="sudo rpi agent setup&#10;rpi setup" aria-label="Copy step 2 commands">⧉</button>
+        </div>
+      </div>
+      <div class="qs-step">
+        <p class="qs-caption"><span class="qs-num">3.</span> Describe your project</p>
+        <div class="qs-block">
+          <pre class="qs-code"><span class="raspberry">[project]</span>
+name = <span class="green">"my-app"</span>
+<span class="raspberry">[ingress]</span>
+service = <span class="green">"web"</span>
+port = <span class="amber">3000</span></pre>
+          <button type="button" class="copy-btn" data-copy="schema = 1&#10;&#10;[project]&#10;name = &quot;my-app&quot;&#10;&#10;[source]&#10;repo = &quot;git@github.com:you/my-app.git&quot;&#10;branch = &quot;main&quot;&#10;&#10;[ingress]&#10;service = &quot;web&quot;&#10;port = 3000&#10;" aria-label="Copy a complete rpi.toml">⧉</button>
+        </div>
+      </div>
+      <div class="qs-step">
+        <p class="qs-caption"><span class="qs-num">4.</span> Ship it</p>
+        <div class="qs-block">
+          <pre class="qs-code"><span class="green">$</span> rpi deploy
+<span class="raspberry">⠧</span> build <span class="muted">→</span> <span class="green">●</span> healthy
+<span class="green">✓</span> deployed <span class="muted">42s</span></pre>
+          <button type="button" class="copy-btn" data-copy="rpi deploy" aria-label="Copy step 4 command">⧉</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="dogfood">
+    <span class="dogfood-emoji" aria-hidden="true">🍓</span>
+    <div class="dogfood-text">
+      <p class="dogfood-title">This page practices what it preaches.</p>
+      <p>You're reading HTML served by nginx in a Docker container, deployed by <code>rpi deploy</code>, running on a Raspberry Pi behind a Cloudflare Tunnel.</p>
+    </div>
+    <span class="live-pill">● live from a Pi</span>
+  </aside>
 </main>
 <footer class="footer">
   <span class="footer-brand"><span class="accent">▸</span> rpi-deploy · MIT license</span>

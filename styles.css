@@ -306,3 +306,89 @@ code { font-family: var(--font-mono); }
 @media (max-width: 640px) {
   .section { padding: 36px 20px; }
 }
+
+/* ---------- quick start ---------- */
+.qs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.qs-step { display: flex; flex-direction: column; }
+
+.qs-caption {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.qs-num { font-family: var(--font-mono); color: var(--green); }
+
+.qs-block {
+  position: relative;
+  flex: 1;
+  display: flex;
+}
+
+.qs-code {
+  flex: 1;
+  margin: 0;
+  padding: 12px 36px 12px 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.qs-block .copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+/* ---------- dogfooding ---------- */
+.dogfood {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 40px;
+  padding: 26px 28px;
+  background: rgba(197, 26, 74, .06);
+  border: 1px solid var(--raspberry);
+  border-radius: 8px;
+}
+
+.dogfood-emoji { font-size: 26px; }
+
+.dogfood-text { flex: 1; min-width: 260px; }
+
+.dogfood-title {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dogfood-text p:last-child { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.55; }
+
+.dogfood-text code { color: var(--text); }
+
+.live-pill {
+  padding: 4px 12px;
+  border: 1px solid var(--green);
+  border-radius: 99px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+/* ---------- responsive: dogfooding ---------- */
+@media (max-width: 640px) {
+  .dogfood { margin: 0 20px; }
+}
