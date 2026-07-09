@@ -1,0 +1,17 @@
+schema = 1
+
+[project]
+name = "rpi-deploy-site"
+
+[source]
+repo = "git@github.com:khmilevoi/rpi-deploy-site.git"
+branch = "main"
+
+[ingress]
+hostname = "rpi.iiskelo.com"
+service = "web"
+port = 80
+
+[healthcheck]
+path = "/"
+expect = "2xx"
