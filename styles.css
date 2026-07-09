@@ -215,7 +215,8 @@ code { font-family: var(--font-mono); }
 @media (max-width: 640px) {
   .hero { padding: 40px 20px; }
   .hero h1 { font-size: 26px; }
-  .hero-terminal { min-width: 0; width: 100%; }
+  .hero-copy { flex: 1 1 100%; }
+  .hero-terminal { flex: 1 1 100%; min-width: 0; width: 100%; }
 }
 
 /* ---------- sections (shared) ---------- */
