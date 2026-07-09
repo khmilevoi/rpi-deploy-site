@@ -217,3 +217,92 @@ code { font-family: var(--font-mono); }
   .hero h1 { font-size: 26px; }
   .hero-terminal { min-width: 0; width: 100%; }
 }
+
+/* ---------- sections (shared) ---------- */
+.section {
+  padding: 48px 40px;
+  border-top: 1px solid var(--border-faint);
+  scroll-margin-top: 72px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--raspberry);
+}
+
+.section h2 {
+  margin: 0 0 28px;
+  font-family: var(--font-mono);
+  font-size: 22px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* ---------- how it works ---------- */
+.hiw-row { display: flex; align-items: stretch; gap: 16px; }
+
+.hiw-card { flex: 1; padding: 20px; }
+
+.card-index {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--raspberry);
+}
+
+.hiw-card h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+
+.hiw-card p:last-child { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.55; }
+
+.hiw-card code { color: var(--text); }
+
+.hiw-arrow {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--green);
+}
+
+.hiw-arrow .v { display: none; }
+
+/* ---------- features ---------- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.feature { padding: 18px; }
+
+.feature-num {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--raspberry);
+}
+
+.feature h3 { margin: 0 0 5px; font-size: 13.5px; font-weight: 600; }
+
+.feature p:last-child { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+.feature code { color: var(--text); font-size: 11.5px; }
+
+/* ---------- responsive: sections ---------- */
+@media (max-width: 860px) {
+  .hiw-row { flex-direction: column; }
+  .hiw-arrow { justify-content: center; }
+  .hiw-arrow .h { display: none; }
+  .hiw-arrow .v { display: block; }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 36px 20px; }
+}

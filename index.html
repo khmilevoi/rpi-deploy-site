@@ -55,7 +55,76 @@
       </div>
     </div>
   </section>
-  <!-- how it works + features: Task 3 -->
+  <section class="section" id="how-it-works">
+    <p class="section-label"># HOW IT WORKS</p>
+    <h2>Two binaries, one SSH connection</h2>
+    <div class="hiw-row">
+      <div class="card hiw-card">
+        <p class="card-index">[1] your machine</p>
+        <h3>rpi CLI</h3>
+        <p>Run <code>rpi deploy</code> from your project. Works from a laptop or CI.</p>
+      </div>
+      <div class="hiw-arrow" aria-hidden="true"><span class="h">──ssh──▸</span><span class="v">ssh ▾</span></div>
+      <div class="card hiw-card">
+        <p class="card-index">[2] raspberry pi</p>
+        <h3>rpi agent</h3>
+        <p>A systemd daemon clones your repo, builds the Compose stack, allocates a stable port.</p>
+      </div>
+      <div class="hiw-arrow" aria-hidden="true"><span class="h">──▸</span><span class="v">▾</span></div>
+      <div class="card hiw-card">
+        <p class="card-index">[3] the internet</p>
+        <h3>your app, live</h3>
+        <p>Health-checked and reachable — via Cloudflare Tunnel or your own ingress.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <p class="section-label"># FEATURES</p>
+    <h2>Everything a deploy needs, nothing it doesn't</h2>
+    <div class="features-grid">
+      <div class="card feature">
+        <p class="feature-num">01</p>
+        <h3>Latest-wins deploy queue</h3>
+        <p>Push twice — the newest deploy wins, the stale one is cancelled.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">02</p>
+        <h3>Encrypted secrets</h3>
+        <p>Env files and secret files (certs, keys) delivered as sealed bundles.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">03</p>
+        <h3>Cloudflare Tunnel ingress</h3>
+        <p>A public hostname for your app without opening a single port.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">04</p>
+        <h3>Health checks</h3>
+        <p>HTTP or TCP probes gate every deploy — broken builds never go live.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">05</p>
+        <h3>Stable port allocation</h3>
+        <p>Each project keeps its host port across deploys. No conflicts.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">06</p>
+        <h3>Logs, stats, lifecycle</h3>
+        <p><code>rpi logs -f</code>, <code>rpi stats</code>, start/stop/restart — without leaving your shell.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">07</p>
+        <h3>One-off commands</h3>
+        <p>Migrations, backups, invites — declared in <code>rpi.toml</code>, run in the container.</p>
+      </div>
+      <div class="card feature">
+        <p class="feature-num">08</p>
+        <h3>Installs in seconds</h3>
+        <p>Prebuilt binaries for Linux, macOS, Windows via npm. No Rust toolchain.</p>
+      </div>
+    </div>
+  </section>
   <!-- quick start + dogfooding: Task 4 -->
 </main>
 <footer class="footer">
