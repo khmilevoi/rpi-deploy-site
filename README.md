@@ -6,9 +6,20 @@ Raspberry Pi behind a Cloudflare Tunnel.
 
 Status: implemented — first deploy pending Cloudflare Tunnel setup on the Pi.
 
-Local preview:
+Source lives in `src/` (`index.html`, `styles.css`, `copy.js`, `assets/`) — no
+build step, no framework.
 
-    npx -y serve -l 8080 .
+Local dev (auto-refresh on save):
+
+    npm run dev
+
+Local preview (no auto-refresh):
+
+    npm run preview
+
+Regenerate the Open Graph image (`src/assets/og.png`):
+
+    npm run og
 
 Container:
 

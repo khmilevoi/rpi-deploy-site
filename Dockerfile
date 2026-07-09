@@ -1,3 +1,3 @@
 FROM nginx:alpine
-COPY index.html styles.css copy.js /usr/share/nginx/html/
-COPY assets/ /usr/share/nginx/html/assets/
+COPY src/index.html src/styles.css src/copy.js /usr/share/nginx/html/
+COPY src/assets/ /usr/share/nginx/html/assets/

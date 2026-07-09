@@ -1,0 +1,15 @@
+{
+  "name": "rpi-deploy-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "live-server src --port=8080",
+    "preview": "serve -l 8080 src",
+    "og": "node scripts/generate-og.mjs"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "playwright": "^1.48.0",
+    "serve": "^14.2.1"
+  }
+}
