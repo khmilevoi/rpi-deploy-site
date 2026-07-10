@@ -11,12 +11,31 @@
 <meta property="og:description" content="Builds and runs your Docker Compose projects on the Pi — over plain SSH. No registry, no Kubernetes, no YAML pipelines.">
 <meta property="og:image" content="https://rpi.iiskelo.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0b0d">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<!-- reusable logo mark: density-ramp triangle, apex right, pink→raspberry -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="rpi-mark" viewBox="0 0 60 50">
+    <g fill="#F06CA0" opacity=".40"><rect x="0" y="0" width="9" height="9"/><rect x="10" y="0" width="9" height="9"/></g>
+    <g fill="#E5588B" opacity=".58"><rect x="0" y="10" width="9" height="9"/><rect x="10" y="10" width="9" height="9"/><rect x="20" y="10" width="9" height="9"/><rect x="30" y="10" width="9" height="9"/></g>
+    <g fill="#DA4375" opacity=".78"><rect x="0" y="20" width="9" height="9"/><rect x="10" y="20" width="9" height="9"/><rect x="20" y="20" width="9" height="9"/><rect x="30" y="20" width="9" height="9"/><rect x="40" y="20" width="9" height="9"/><rect x="50" y="20" width="9" height="9"/></g>
+    <g fill="#D02F60" opacity=".92"><rect x="0" y="30" width="9" height="9"/><rect x="10" y="30" width="9" height="9"/><rect x="20" y="30" width="9" height="9"/><rect x="30" y="30" width="9" height="9"/></g>
+    <g fill="#C51A4A"><rect x="0" y="40" width="9" height="9"/><rect x="10" y="40" width="9" height="9"/></g>
+  </symbol>
+</svg>
+
 <header class="nav">
-  <span class="wordmark"><span class="accent">▸</span> rpi-deploy</span>
+  <a class="wordmark" href="#top" aria-label="rpi-deploy home">
+    <svg class="mark mark-nav" viewBox="0 0 60 50" aria-hidden="true"><use href="#rpi-mark"/></svg>
+    <span>rpi-deploy</span>
+  </a>
   <nav class="nav-links">
     <a href="#how-it-works">how it works</a>
     <a href="#features">features</a>
@@ -24,16 +43,17 @@
     <a class="nav-github" href="https://github.com/khmilevoi/rpi-deploy">GitHub ★</a>
   </nav>
 </header>
-<main>
+<main id="top">
   <section class="hero">
     <div class="hero-copy">
-      <h1>Deploy to your Raspberry&nbsp;Pi with <span class="accent">one command</span>.</h1>
+      <p class="hero-eyebrow">deploy anything to your Pi</p>
+      <h1>Deploy to your Raspberry&nbsp;Pi with <span class="grad-text">one command</span>.</h1>
       <p class="hero-sub">rpi-deploy builds and runs your Docker Compose projects on the Pi — over plain SSH. No registry, no Kubernetes, no YAML pipelines.</p>
       <div class="install-pill">
         <code><span class="prompt">$</span> npm install -g rpi-deploy</code>
         <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy install command">⧉</button>
       </div>
-      <p class="hero-meta">MIT · prebuilt binaries · Linux / macOS / Windows · <img class="badge" src="https://img.shields.io/npm/v/rpi-deploy?style=flat-square&amp;label=npm&amp;labelColor=161b22&amp;color=30363d" alt="npm version"></p>
+      <p class="hero-meta">prebuilt binaries · Linux / macOS / Windows · <img class="badge" src="https://img.shields.io/npm/v/rpi-deploy?style=flat-square&amp;label=npm&amp;labelColor=161b22&amp;color=30363d" alt="npm version"></p>
     </div>
     <div class="hero-terminal">
       <div class="terminal">
@@ -41,38 +61,48 @@
           <span class="dot dot-raspberry"></span>
           <span class="dot dot-green"></span>
           <span class="dot dot-grey"></span>
-          <span class="terminal-title">~/my-app</span>
+          <span class="terminal-title">~/rpi-deploy-site</span>
         </div>
-        <pre class="terminal-body"><span class="green">$</span> rpi deploy
-<span class="green">●</span> config    rpi.toml <span class="muted">(my-app → pi)</span>
-<span class="green">●</span> tunnel    ssh pi@raspberrypi.local
-<span class="green">●</span> fetch     main @ 4f2a91c
-<span class="raspberry">⠧</span> build     docker compose build…
-<span class="faint">│ #12 exporting layers</span>
-<span class="faint">│ #12 naming to my-app-web…</span>
-<span class="green">●</span> healthy   GET / → 200 <span class="muted">(1.2s)</span>
-<span class="green">✓</span> deployed  https://app.example.com <span class="muted">42s</span></pre>
+        <pre class="terminal-body"><span class="tline"><span class="green">$</span> rpi deploy</span>
+<span class="tline art"><span class="g0">░░</span>
+<span class="g1">▒▒▒▒</span>    <b>r p i</b>
+<span class="g2">▓▓▓▓▓▓</span>  deploy · rpi-deploy-site
+<span class="g3">▓▓▓▓</span>
+<span class="g4">██</span></span>
+<span class="tline"><span class="raspberry">▸</span> agent 0.17.1 (api v1)</span>
+<span class="tline"><span class="raspberry">▸</span> deployment 3f9c21a4-8b7e-4c2a-9f1d-2e6a5b0c7d84 started; streaming logs:</span>
+<span class="tline"><span class="green">✓</span> fetch <span class="muted">(1.4s)</span></span>
+<span class="tline">fetched 4f2a91c</span>
+<span class="tline"><span class="green">✓</span> build <span class="muted">(38.2s)</span></span>
+<span class="tline"><span class="green">✓</span> start <span class="muted">(2.1s)</span></span>
+<span class="tline"><span class="green">✓</span> health <span class="muted">(1.2s)</span></span>
+<span class="tline"><span class="green">✓</span> route <span class="muted">(0.6s)</span></span>
+<span class="tline"><span class="green">✓</span> gc <span class="muted">(0.3s)</span></span>
+<span class="tline"><span class="raspberry">▸</span> <span class="green">deployed ✓ rpi-deploy-site  →  https://rpi.iiskelo.com · 1 service (44.9s)</span></span></pre>
       </div>
     </div>
   </section>
+
+  <div class="rampband" aria-hidden="true"></div>
+
   <section class="section" id="how-it-works">
-    <p class="section-label"># HOW IT WORKS</p>
+    <p class="section-label">how it works</p>
     <h2>Two binaries, one SSH connection</h2>
     <div class="hiw-row">
       <div class="card hiw-card">
-        <p class="card-index">[1] your machine</p>
+        <p class="card-index">your machine</p>
         <h3>rpi CLI</h3>
         <p>Run <code>rpi deploy</code> from your project. Works from a laptop or CI.</p>
       </div>
       <div class="hiw-arrow" aria-hidden="true"><span class="h">──ssh──▸</span><span class="v">ssh ▾</span></div>
       <div class="card hiw-card">
-        <p class="card-index">[2] raspberry pi</p>
+        <p class="card-index">raspberry pi</p>
         <h3>rpi agent</h3>
         <p>A systemd daemon clones your repo, builds the Compose stack, allocates a stable port.</p>
       </div>
       <div class="hiw-arrow" aria-hidden="true"><span class="h">──▸</span><span class="v">▾</span></div>
       <div class="card hiw-card">
-        <p class="card-index">[3] the internet</p>
+        <p class="card-index">the internet</p>
         <h3>your app, live</h3>
         <p>Health-checked and reachable — via Cloudflare Tunnel or your own ingress.</p>
       </div>
@@ -80,75 +110,77 @@
   </section>
 
   <section class="section" id="features">
-    <p class="section-label"># FEATURES</p>
+    <p class="section-label">features</p>
     <h2>Everything a deploy needs, nothing it doesn't</h2>
     <div class="features-grid">
       <div class="card feature">
-        <p class="feature-num">01</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Latest-wins deploy queue</h3>
         <p>Push twice — the newest deploy wins, the stale one is cancelled.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">02</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Encrypted secrets</h3>
         <p>Env files and secret files (certs, keys) delivered as sealed bundles.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">03</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Cloudflare Tunnel ingress</h3>
         <p>A public hostname for your app without opening a single port.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">04</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Health checks</h3>
         <p>HTTP or TCP probes gate every deploy — broken builds never go live.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">05</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Stable port allocation</h3>
         <p>Each project keeps its host port across deploys. No conflicts.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">06</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Logs, stats, lifecycle</h3>
         <p><code>rpi logs -f</code>, <code>rpi stats</code>, start/stop/restart — without leaving your shell.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">07</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>One-off commands</h3>
         <p>Migrations, backups, invites — declared in <code>rpi.toml</code>, run in the container.</p>
       </div>
       <div class="card feature">
-        <p class="feature-num">08</p>
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Installs in seconds</h3>
-        <p>Prebuilt binaries for Linux, macOS, Windows via npm. No Rust toolchain.</p>
+        <p>Pulls a prebuilt binary for your OS via npm — no Rust toolchain, no compile step, no Docker on your machine.</p>
       </div>
     </div>
   </section>
+
   <section class="section" id="quick-start">
-    <p class="section-label"># QUICK START</p>
+    <p class="section-label">quick start</p>
     <h2>Zero to deployed in four steps</h2>
     <div class="qs-grid">
       <div class="qs-step">
-        <p class="qs-caption"><span class="qs-num">1.</span> Install the CLI on your machine</p>
+        <p class="qs-caption"><span class="qs-num">1</span> Install the CLI on your machine</p>
         <div class="qs-block">
           <pre class="qs-code"><span class="green">$</span> npm install -g rpi-deploy
 <span class="faint"># prebuilt binary, no toolchain</span>
-<span class="green">✓</span> rpi 0.12.0 <span class="muted">(4s)</span></pre>
+<span class="green">$</span> rpi --version
+rpi 0.17.1</pre>
           <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy step 1 command">⧉</button>
         </div>
       </div>
       <div class="qs-step">
-        <p class="qs-caption"><span class="qs-num">2.</span> Set up the Pi</p>
+        <p class="qs-caption"><span class="qs-num">2</span> Set up the Pi</p>
         <div class="qs-block">
           <pre class="qs-code"><span class="green">$</span> sudo rpi agent setup <span class="faint"># on the pi</span>
 <span class="green">$</span> rpi setup <span class="faint"># on your machine</span>
-<span class="green">✓</span> ready to deploy</pre>
+<span class="raspberry">▸</span> <span class="green">setup complete — agent reachable</span></pre>
           <button type="button" class="copy-btn" data-copy="sudo rpi agent setup&#10;rpi setup" aria-label="Copy step 2 commands">⧉</button>
         </div>
       </div>
       <div class="qs-step">
-        <p class="qs-caption"><span class="qs-num">3.</span> Describe your project</p>
+        <p class="qs-caption"><span class="qs-num">3</span> Describe your project</p>
         <div class="qs-block">
           <pre class="qs-code"><span class="raspberry">[project]</span>
 name = <span class="green">"my-app"</span>
@@ -159,11 +191,11 @@ port = <span class="amber">3000</span></pre>
         </div>
       </div>
       <div class="qs-step">
-        <p class="qs-caption"><span class="qs-num">4.</span> Ship it</p>
+        <p class="qs-caption"><span class="qs-num">4</span> Ship it</p>
         <div class="qs-block">
           <pre class="qs-code"><span class="green">$</span> rpi deploy
-<span class="raspberry">⠧</span> build <span class="muted">→</span> <span class="green">●</span> healthy
-<span class="green">✓</span> deployed <span class="muted">42s</span></pre>
+<span class="green">✓</span> build <span class="muted">(38.2s)</span>  <span class="green">✓</span> health <span class="muted">(1.2s)</span>
+<span class="raspberry">▸</span> <span class="green">deployed ✓ rpi-deploy-site (44.9s)</span></pre>
           <button type="button" class="copy-btn" data-copy="rpi deploy" aria-label="Copy step 4 command">⧉</button>
         </div>
       </div>
@@ -171,20 +203,21 @@ port = <span class="amber">3000</span></pre>
   </section>
 
   <aside class="dogfood">
-    <span class="dogfood-emoji" aria-hidden="true">🍓</span>
     <div class="dogfood-text">
       <p class="dogfood-title">This page practices what it preaches.</p>
       <p>You're reading HTML served by nginx in a Docker container, deployed by <code>rpi deploy</code>, running on a Raspberry Pi behind a Cloudflare Tunnel.</p>
     </div>
-    <span class="live-pill">● live from a Pi</span>
+    <span class="live-pill"><span class="live-dot"></span> live from a Pi</span>
   </aside>
 </main>
 <footer class="footer">
-  <span class="footer-brand"><span class="accent">▸</span> rpi-deploy · MIT license</span>
+  <span class="footer-brand">
+    <svg class="mark mark-foot" viewBox="0 0 60 50" aria-hidden="true"><use href="#rpi-mark"/></svg>
+    rpi-deploy · MIT license
+  </span>
   <span class="footer-links">
     <a href="https://github.com/khmilevoi/rpi-deploy">GitHub</a>
     <a href="https://www.npmjs.com/package/rpi-deploy">npm</a>
-    <img class="badge" src="https://img.shields.io/npm/v/rpi-deploy?style=flat-square&amp;label=npm&amp;labelColor=161b22&amp;color=30363d" alt="npm version">
   </span>
 </footer>
 <script src="copy.js" defer></script>
