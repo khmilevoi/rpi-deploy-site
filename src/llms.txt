@@ -26,6 +26,8 @@ Prebuilt binaries for Linux and Windows; builds from source on macOS. No Rust to
 - Stable port allocation per project across deploys.
 - Lifecycle commands: `rpi logs -f`, `rpi stats`, start/stop/restart.
 - One-off commands (migrations, backups) declared in `rpi.toml`, run inside the container.
+- Installs in seconds: prebuilt binary for Linux and Windows via `npm install -g` — no toolchain or Docker on your machine (macOS builds from source).
+- Live deploy pipeline: fetch → build → start → health → route → gc, each stage collapsing to a timed summary, with a service count in the final stamp.
 - Deploy-key preflight: registers a read-only GitHub deploy key for private repos on first deploy.
 
 ## Docs
