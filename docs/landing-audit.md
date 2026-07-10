@@ -249,3 +249,45 @@ After every deploy that touched `src/styles.css`, `src/copy.js`, or `src/assets/
    take or hasn't propagated yet), and `diff <(curl -s https://rpi.iiskelo.com/styles.css)
    src/styles.css` should be empty. Don't rely on `index.html` alone to confirm a deploy
    landed — it may already be current while CSS/JS lag behind it, exactly as above.
+
+**Custom purge must target the stale assets themselves, not the page.** A custom purge of
+just `https://rpi.iiskelo.com/` does nothing for this problem — that URL was never cached
+in the first place (`Cf-Cache-Status: DYNAMIC`). List `styles.css`, `copy.js`,
+`assets/favicon.svg`, `assets/og.png`, and each `assets/fonts/*.woff2` explicitly, or use
+"Purge Everything" if unsure what's cached.
+
+## Pitfalls hit while building this audit (read once, avoid repeating)
+
+Concrete mistakes made while setting up self-hosted fonts, the discovery files, and this
+audit brief — kept here so the next pass doesn't re-learn them the hard way.
+
+- **A CSS custom property can look like a reasonable brand color and still fail contrast
+  against the specific background it's used on.** `--raspberry` (`#C51A4A`) and `--faint`
+  (`#4b525c`) both read fine by eye on `--panel` (`#12141a`) but measured 3.17:1 and 2.33:1
+  — both under the 4.5:1 WCAG AA minimum for small text. Don't eyeball contrast; compute it
+  (relative luminance formula, or Lighthouse's `color-contrast` audit) against the *actual*
+  background each use site renders on, not against a color that "feels dark enough."
+- **An explicit `width`/`height` on an image must match the size it actually renders at,
+  not the image's intrinsic size.** Setting `width="88" height="20"` (the npm badge SVG's
+  native size) fixed the CLS `unsized-images` audit but broke a *different* one
+  (`image-aspect-ratio`), because `.badge` forces `height: 18px` in CSS — the attributes
+  must encode the post-CSS aspect ratio (`79×18`), not the source file's. Check both audits
+  together after touching any image's dimensions.
+- **Adding a file to `src/` does not mean it ships.** `robots.txt`, `sitemap.xml`, and
+  `llms.txt` were added under `src/` and worked in local dev (`npm run dev` serves `src/`
+  directly) but the `Dockerfile`'s `COPY` list was never updated, so they'd have been
+  missing from the built image and therefore from production. Any new top-level file in
+  `src/` needs a matching `Dockerfile` `COPY` entry — local dev serving a directory doesn't
+  prove the container ships the same files.
+- **A "successful" deploy can still serve a broken mix of old and new files.** See
+  "Post-deploy: purge the CDN cache" above — `rpi deploy` finishing and the live HTML
+  reflecting the latest commit does *not* mean the whole page is current, because
+  Cloudflare's edge cache holds CSS/JS/assets independently of the origin's deploy state.
+  Verifying "the fix is live" requires diffing the actual served bytes
+  (`curl … | diff - src/…`) file by file, not just checking that the page loads or that one
+  file (usually `index.html`) looks right.
+- **No cache headers at all is its own bug, distinct from stale cache.** Before
+  `nginx.conf` was added, the container sent no `Cache-Control` whatsoever (plain
+  `nginx:alpine` defaults), which is what Lighthouse's `cache-insight` flagged — a separate
+  problem from the CDN staleness above, and one that had to be fixed at the origin
+  (`nginx.conf`) rather than by purging anything.
