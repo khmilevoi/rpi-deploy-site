@@ -19,6 +19,7 @@
   /* brand gradient — pink (top of the mark) fades to raspberry (bottom) */
   --pink: #F06CA0;
   --raspberry: #C51A4A;
+  --raspberry-a11y: #E14F82; /* raspberry lightened to meet 4.5:1 on --panel for small text */
   --grad: linear-gradient(90deg, var(--pink), var(--raspberry));
   --grad-v: linear-gradient(180deg, var(--pink), var(--raspberry));
 
@@ -32,7 +33,7 @@
   --border-faint: #191d24;
   --text: #e8eef5;
   --muted: #8b949e;
-  --faint: #4b525c;
+  --faint: #7b848e; /* lightened to meet 4.5:1 on --panel */
 
   --font-display: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-term: ui-monospace, "SF Mono", Consolas, "DejaVu Sans Mono", monospace;
@@ -285,7 +286,7 @@ code { font-family: var(--font-term); }
 
 /* terminal colour utilities (reused by quick-start blocks) */
 .green { color: var(--green); }
-.raspberry { color: var(--raspberry); }
+.raspberry { color: var(--raspberry-a11y); }
 .muted { color: var(--muted); }
 .faint { color: var(--faint); }
 .amber { color: var(--amber); }
@@ -354,7 +355,7 @@ code { font-family: var(--font-term); }
   font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--raspberry);
+  color: var(--raspberry-a11y);
 }
 .hiw-card h3 { margin: 0 0 7px; font-family: var(--font-display); font-size: 15px; font-weight: 700; }
 .hiw-card p:last-child { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
