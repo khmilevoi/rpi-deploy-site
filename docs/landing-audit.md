@@ -220,3 +220,32 @@ during a normal release.
 
 Fixes here are low-risk (no visual regression possible) — apply directly rather than just
 reporting, then note what changed.
+
+## Post-deploy: purge the CDN cache
+
+The site sits behind a Cloudflare Tunnel, and static assets (`styles.css`, `copy.js`,
+`src/assets/**`) have no content hash in their filename, so Cloudflare's edge cache has no
+way to know they changed on deploy — it keeps serving the pre-deploy bytes until its TTL
+expires (observed: `styles.css` served from cache ~72 minutes stale, missing an entire
+release's worth of changes, while `index.html` — served as `Cf-Cache-Status: DYNAMIC`, never
+cached — was already current). A deploy can look complete (`rpi deploy` succeeds, the HTML
+updates instantly) while the page actually renders with stale CSS/JS/fonts for every visitor
+until the cache clears on its own.
+
+After every deploy that touched `src/styles.css`, `src/copy.js`, or `src/assets/**`:
+
+1. Purge Cloudflare's cache for this zone — dashboard (`Caching → Configuration → Purge
+   Cache`, "Purge Everything" is fine for a site this size) or the API:
+   ```
+   curl -X POST "https://api.cloudflare.com/client/v4/zones/{zone_id}/purge_cache" \
+     -H "Authorization: Bearer {api_token}" \
+     -H "Content-Type: application/json" \
+     --data '{"purge_everything": true}'
+   ```
+   (Zone ID and an API token with `Cache Purge` permission live with whoever manages the
+   Cloudflare account — not in this repo.)
+2. Verify: `curl -sI https://rpi.iiskelo.com/styles.css` — `Cf-Cache-Status` should read
+   `MISS` or `DYNAMIC` on the first request after purge (a `HIT` means the purge didn't
+   take or hasn't propagated yet), and `diff <(curl -s https://rpi.iiskelo.com/styles.css)
+   src/styles.css` should be empty. Don't rely on `index.html` alone to confirm a deploy
+   landed — it may already be current while CSS/JS lag behind it, exactly as above.
