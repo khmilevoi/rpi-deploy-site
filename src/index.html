@@ -53,7 +53,7 @@
         <code><span class="prompt">$</span> npm install -g rpi-deploy</code>
         <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy install command">⧉</button>
       </div>
-      <p class="hero-meta">prebuilt binaries · Linux / macOS / Windows · <img class="badge" src="https://img.shields.io/npm/v/rpi-deploy?style=flat-square&amp;label=npm&amp;labelColor=161b22&amp;color=30363d" alt="npm version"></p>
+      <p class="hero-meta">prebuilt binaries for Linux / Windows · builds from source on macOS · <img class="badge" src="https://img.shields.io/npm/v/rpi-deploy?style=flat-square&amp;label=npm&amp;labelColor=161b22&amp;color=30363d" alt="npm version"></p>
     </div>
     <div class="hero-terminal">
       <div class="terminal">
@@ -69,7 +69,7 @@
 <span class="g2">▓▓▓▓▓▓</span>  deploy · rpi-deploy-site
 <span class="g3">▓▓▓▓</span>
 <span class="g4">██</span></span>
-<span class="tline"><span class="raspberry">▸</span> agent 0.17.1 (api v1)</span>
+<span class="tline"><span class="raspberry">▸</span> agent 0.18.0 (api v1)</span>
 <span class="tline"><span class="raspberry">▸</span> deployment 3f9c21a4-8b7e-4c2a-9f1d-2e6a5b0c7d84 started; streaming logs:</span>
 <span class="tline"><span class="green">✓</span> fetch <span class="muted">(1.4s)</span></span>
 <span class="tline">fetched 4f2a91c</span>
@@ -153,6 +153,16 @@
         <h3>Installs in seconds</h3>
         <p>Pulls a prebuilt binary for your OS via npm — no Rust toolchain, no compile step, no Docker on your machine.</p>
       </div>
+      <div class="card feature">
+        <span class="dchip" aria-hidden="true"></span>
+        <h3>Live deploy pipeline</h3>
+        <p>Each stage — fetch, build, start, health, route, gc — collapses to a timed summary as it finishes, with a service count in the final stamp.</p>
+      </div>
+      <div class="card feature">
+        <span class="dchip" aria-hidden="true"></span>
+        <h3>Deploy-key preflight</h3>
+        <p>First deploy of a private repo won't fail on a missing key — <code>rpi</code> registers a read-only GitHub deploy key for you, or shows it and waits.</p>
+      </div>
     </div>
   </section>
 
@@ -166,7 +176,7 @@
           <pre class="qs-code"><span class="green">$</span> npm install -g rpi-deploy
 <span class="faint"># prebuilt binary, no toolchain</span>
 <span class="green">$</span> rpi --version
-rpi 0.17.1</pre>
+rpi 0.18.0</pre>
           <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy step 1 command">⧉</button>
         </div>
       </div>
@@ -175,7 +185,7 @@ rpi 0.17.1</pre>
         <div class="qs-block">
           <pre class="qs-code"><span class="green">$</span> sudo rpi agent setup <span class="faint"># on the pi</span>
 <span class="green">$</span> rpi setup <span class="faint"># on your machine</span>
-<span class="raspberry">▸</span> <span class="green">setup complete — agent reachable</span></pre>
+<span class="raspberry">▸</span> <span class="green">saved profile 'pi' to ~/.config/pi/config.toml</span></pre>
           <button type="button" class="copy-btn" data-copy="sudo rpi agent setup&#10;rpi setup" aria-label="Copy step 2 commands">⧉</button>
         </div>
       </div>
@@ -194,7 +204,8 @@ port = <span class="amber">3000</span></pre>
         <p class="qs-caption"><span class="qs-num">4</span> Ship it</p>
         <div class="qs-block">
           <pre class="qs-code"><span class="green">$</span> rpi deploy
-<span class="green">✓</span> build <span class="muted">(38.2s)</span>  <span class="green">✓</span> health <span class="muted">(1.2s)</span>
+<span class="green">✓</span> build <span class="muted">(38.2s)</span>
+<span class="green">✓</span> health <span class="muted">(1.2s)</span>
 <span class="raspberry">▸</span> <span class="green">deployed ✓ rpi-deploy-site (44.9s)</span></pre>
           <button type="button" class="copy-btn" data-copy="rpi deploy" aria-label="Copy step 4 command">⧉</button>
         </div>
