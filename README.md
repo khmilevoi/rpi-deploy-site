@@ -28,3 +28,7 @@ Container:
 Deploy (once the tunnel exists): `rpi deploy` from the repo root.
 
 Design docs live in `docs/` — approved spec, mockup, and handoff.
+
+Before every `rpi-deploy` release, read [`docs/landing-audit.md`](docs/landing-audit.md)
+and run the audit it describes — the page (and `src/llms.txt`, `src/sitemap.xml`,
+`src/robots.txt`) drift from the CLI's real version, output, and feature set otherwise.
