@@ -22,7 +22,7 @@ is usually from earlier releases, not this one.
 Site repo (`rpi-deploy-site`, this repo): no build step, no framework.
 
 - `src/index.html` — the whole page: hero (terminal mock, install pill, hero-meta line),
-  how-it-works (3 cards), features grid (8 cards), quick start (4 steps), dogfood aside,
+  how-it-works (3 cards), features grid (10 cards), quick start (4 steps), dogfood aside,
   footer.
 - `src/copy.js` — copy buttons; the *full* copied payload lives in each button's
   `data-copy` attribute in the HTML and can differ from the visible snippet (that's
@@ -37,8 +37,8 @@ Pi repo (`rpi-deploy` itself, sibling directory `C:\Users\Khmil\RustProjects\pi`
 `git@github.com:khmilevoi/rpi-deploy.git`) — sources of truth for everything above:
 
 - `package.json` / `Cargo.toml` `[workspace.package]` — the current released version.
-- `README.md` — the "Status: vX.Y (...)" line, the status paragraph narrating recent
-  versions, and the "Supported features" list.
+- `README.md` — the "Highlights" section and the opening paragraph (the README no longer
+  has a "Status:" line or a "Supported features" list; features live under "Highlights").
 - `.github/workflows/release.yml` — which prebuilt-binary targets actually exist.
 - `crates/bin/src/output/` (esp. `pipeline.rs`) — what `rpi deploy` output really looks
   like.
@@ -177,8 +177,8 @@ Check each against the code above:
 
 Capabilities and configuration shown on the page vs what the tool does today.
 
-1. Features grid (8 cards) vs the pi README "Supported features" list and the status
-   paragraph narrating recent versions. Two directions:
+1. Features grid (10 cards) vs the pi README "Highlights" section and the opening
+   paragraph. Two directions:
    - Each card's claim still accurate (queue semantics, secrets, tunnel ingress, health
      checks, port allocation, logs/stats/lifecycle, one-off commands, prebuilt installs).
    - Any flagship capability shipped since the page was written that's missing? The grid
