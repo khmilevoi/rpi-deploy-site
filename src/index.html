@@ -66,7 +66,7 @@
 <span class="g2">▓▓▓▓▓▓</span>  deploy · rpi-deploy-site
 <span class="g3">▓▓▓▓</span>
 <span class="g4">██</span></span>
-<span class="tline"><span class="raspberry">▸</span> agent 0.20.0 (api v1)</span>
+<span class="tline"><span class="raspberry">▸</span> agent 0.20.1 (api v1)</span>
 <span class="tline"><span class="raspberry">▸</span> deployment 3f9c21a4-8b7e-4c2a-9f1d-2e6a5b0c7d84 started; streaming logs:</span>
 <span class="tline"><span class="green">✓</span> fetch <span class="muted">(1.4s)</span></span>
 <span class="tline">fetched 4f2a91c</span>
@@ -137,6 +137,11 @@
       </div>
       <div class="card feature">
         <span class="dchip" aria-hidden="true"></span>
+        <h3>Survives reboots</h3>
+        <p>Containers come back on their own after a Pi power-cycle (<code>restart: unless-stopped</code>) — and a deliberate <code>rpi stop</code> stays stopped.</p>
+      </div>
+      <div class="card feature">
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Logs, stats, lifecycle</h3>
         <p><code>rpi logs -f</code>, <code>rpi stats -w</code> for a live TUI with history sparklines, start/stop/restart — without leaving your shell.</p>
       </div>
@@ -173,7 +178,7 @@
           <pre class="qs-code"><span class="green">$</span> npm install -g rpi-deploy
 <span class="faint"># prebuilt binary, no toolchain</span>
 <span class="green">$</span> rpi --version
-rpi 0.20.0</pre>
+rpi 0.20.1</pre>
           <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy step 1 command">⧉</button>
         </div>
       </div>
