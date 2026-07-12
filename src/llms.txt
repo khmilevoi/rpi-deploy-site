@@ -14,7 +14,7 @@ Prebuilt binaries for Linux and Windows; builds from source on macOS. No Rust to
 
 1. `npm install -g rpi-deploy`
 2. `sudo rpi agent setup` on the Pi, then `rpi setup` on your machine to save an SSH profile.
-3. Add an `rpi.toml` to your project describing `[project]`, `[source]`, and `[ingress]`.
+3. `rpi init` scaffolds an `rpi.toml` in your project — or write one by hand describing `[project]`, `[source]`, and `[ingress]`.
 4. `rpi deploy` — fetches, builds, starts, health-checks, routes, and garbage-collects in one pipeline.
 
 ## Key features
@@ -24,7 +24,7 @@ Prebuilt binaries for Linux and Windows; builds from source on macOS. No Rust to
 - Cloudflare Tunnel ingress: a public hostname without opening a port.
 - Health checks (HTTP or TCP) gate every deploy.
 - Stable port allocation per project across deploys.
-- Lifecycle commands: `rpi logs -f`, `rpi stats`, start/stop/restart.
+- Lifecycle commands: `rpi logs -f`, `rpi stats -w` (live TUI with history sparklines), start/stop/restart.
 - One-off commands (migrations, backups) declared in `rpi.toml`, run inside the container.
 - Installs in seconds: prebuilt binary for Linux and Windows via `npm install -g` — no toolchain or Docker on your machine (macOS builds from source).
 - Live deploy pipeline: fetch → build → start → health → route → gc, each stage collapsing to a timed summary, with a service count in the final stamp.
