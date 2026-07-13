@@ -1,6 +1,6 @@
 # rpi-deploy
 
-> rpi-deploy builds and runs Docker Compose projects on a Raspberry Pi over plain SSH — no container registry, no Kubernetes, no YAML pipelines. It ships as two binaries: the `rpi` CLI (runs on your machine or CI) and `rpi agent` (a systemd daemon on the Pi that clones the repo, builds the Compose stack, and allocates a stable port).
+> rpi-deploy builds and runs Docker Compose projects on a Raspberry Pi over plain SSH — no container registry, no Kubernetes, no YAML pipelines. It ships as a single `rpi` binary: run it on your machine or CI as the CLI, or as `rpi agent run` — a systemd daemon on the Pi that clones the repo, builds the Compose stack, and allocates a stable port.
 
 ## Install
 
@@ -28,6 +28,7 @@ Prebuilt binaries for Linux and Windows; builds from source on macOS. No Rust to
 - Lifecycle commands: `rpi logs -f`, `rpi stats -w` (live dashboard TUI — CPU / memory / temperature cards with mini charts and a per-service table with status pills and memory bars), start/stop/restart.
 - One-off commands (migrations, backups) declared in `rpi.toml`, run inside the container.
 - Installs in seconds: prebuilt binary for Linux and Windows via `npm install -g` — no toolchain or Docker on your machine (macOS builds from source).
+- Client-triggered agent updates: `rpi upgrade` brings the Pi's agent binary up to your CLI's version over SSH (download → SHA-256 verify → atomic swap → restart), no manual SSH session.
 - Live deploy pipeline: fetch → build → start → health → route → gc, each stage collapsing to a timed summary, with a service count in the final stamp.
 - Deploy-key preflight: registers a read-only GitHub deploy key for private repos on first deploy.
 

@@ -9,7 +9,7 @@
 <meta property="og:url" content="https://rpi.iiskelo.com/">
 <meta property="og:title" content="rpi-deploy — deploy to your Raspberry Pi with one command">
 <meta property="og:description" content="Builds and runs your Docker Compose projects on the Pi — over plain SSH. No registry, no Kubernetes, no YAML pipelines.">
-<meta property="og:image" content="https://rpi.iiskelo.com/assets/og.png?v=0.21.1">
+<meta property="og:image" content="https://rpi.iiskelo.com/assets/og.png?v=0.22.0">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0b0d">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -66,7 +66,7 @@
 <span class="g2">▓▓▓▓▓▓</span>  deploy · rpi-deploy-site
 <span class="g3">▓▓▓▓</span>
 <span class="g4">██</span></span>
-<span class="tline"><span class="raspberry">▸</span> agent 0.21.1 (api v1)</span>
+<span class="tline"><span class="raspberry">▸</span> agent 0.22.0 (api v1)</span>
 <span class="tline"><span class="raspberry">▸</span> deployment 3f9c21a4-8b7e-4c2a-9f1d-2e6a5b0c7d84 started; streaming logs:</span>
 <span class="tline"><span class="green">✓</span> fetch <span class="muted">(1.4s)</span></span>
 <span class="tline">fetched 4f2a91c</span>
@@ -157,6 +157,11 @@
       </div>
       <div class="card feature">
         <span class="dchip" aria-hidden="true"></span>
+        <h3>Client-triggered updates</h3>
+        <p><code>rpi upgrade</code> brings the Pi's agent up to your CLI's version over SSH — download, SHA-256 verify, atomic swap, restart — no manual SSH session.</p>
+      </div>
+      <div class="card feature">
+        <span class="dchip" aria-hidden="true"></span>
         <h3>Live deploy pipeline</h3>
         <p>Each stage — fetch, build, start, health, route, gc — collapses to a timed summary as it finishes, with a service count in the final stamp.</p>
       </div>
@@ -178,7 +183,7 @@
           <pre class="qs-code"><span class="green">$</span> npm install -g rpi-deploy
 <span class="faint"># prebuilt binary, no toolchain</span>
 <span class="green">$</span> rpi --version
-rpi 0.21.1</pre>
+rpi 0.22.0</pre>
           <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy step 1 command">⧉</button>
         </div>
       </div>
