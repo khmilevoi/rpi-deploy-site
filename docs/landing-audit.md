@@ -70,7 +70,10 @@ Every literal claim on the page vs current reality. Work through:
 1. Version strings: `grep -nE '[0-9]+\.[0-9]+\.[0-9]+' src/index.html`. Known trap:
    quick-start step 1 shows an install transcript ending in `✓ rpi <version>` — it must
    equal the current version in the pi repo's `package.json`. This exact string once sat
-   five releases stale.
+   five releases stale. Note the `og:image` URL carries a `?v=<version>` cache-bust param
+   (`assets/og.png?v=0.21.0`) so social scrapers fetch the regenerated preview without a
+   CDN purge — it must be bumped to the current version every release the hero (and thus
+   `og.png`) changes; the grep above surfaces it alongside the other version strings.
 2. The install command (`npm install -g rpi-deploy`) — still the recommended install path
    per the pi README.
 3. The hero-meta line ("MIT · prebuilt binaries · Linux / macOS / Windows") — check each
