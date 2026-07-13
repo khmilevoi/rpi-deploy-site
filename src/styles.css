@@ -279,10 +279,9 @@ code { font-family: var(--font-term); }
    while still allowing the transform used by the stream-in animation. */
 .tline { display: inline-block; }
 
-/* the deploy banner is one block of ASCII art: its rows stack at terminal
-   leading (1.0) so the density glyphs form a solid triangle instead of drifting
-   apart at the log's roomier line-height. vertical-align:top keeps it flush. */
-.tline.art { line-height: 1; vertical-align: top; margin: 6px 0; }
+/* Keep the banner's density glyphs touching without letting their font metrics
+   collide with adjacent rows. */
+.tline.art { line-height: 1.18; vertical-align: top; margin: 6px 0; }
 
 /* terminal colour utilities (reused by quick-start blocks) */
 .green { color: var(--green); }
@@ -297,15 +296,6 @@ code { font-family: var(--font-term); }
 .g2 { color: #DA4375; }
 .g3 { color: #D02F60; }
 .g4 { color: #C51A4A; }
-
-/* ================= signature density band ================= */
-.rampband {
-  height: 10px;
-  background:
-    repeating-linear-gradient(90deg, transparent 0, transparent 21px, var(--void) 21px, var(--void) 24px),
-    var(--grad);
-  opacity: .9;
-}
 
 /* ================= sections ================= */
 .section {
@@ -445,6 +435,38 @@ code { font-family: var(--font-term); }
   overflow-x: auto;
 }
 .qs-block .copy-btn { position: absolute; top: 11px; right: 12px; }
+
+/* Neutral, native scrollbars keep long commands discoverable without competing
+   with the terminal's semantic pink and green status colours. */
+.terminal-body,
+.qs-code {
+  --scrollbar-thumb: #5b6572;
+  --scrollbar-thumb-hover: #737f8e;
+  --scrollbar-track: var(--panel-alt);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+@media (prefers-contrast: more) {
+  .terminal-body,
+  .qs-code { --scrollbar-thumb: #aab4c1; }
+}
+
+/* Legacy Blink/WebKit fallback, kept separate from the standard scrollbar API. */
+@supports not (scrollbar-color: auto) {
+  .terminal-body::-webkit-scrollbar,
+  .qs-code::-webkit-scrollbar { width: 8px; height: 8px; }
+  .terminal-body::-webkit-scrollbar-track,
+  .qs-code::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  .terminal-body::-webkit-scrollbar-thumb,
+  .qs-code::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border: 2px solid var(--scrollbar-track);
+    border-radius: 999px;
+  }
+  .terminal-body::-webkit-scrollbar-thumb:hover,
+  .qs-code::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+}
 
 /* ================= dogfooding ================= */
 .dogfood {
