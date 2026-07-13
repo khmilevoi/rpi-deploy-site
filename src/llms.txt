@@ -25,7 +25,7 @@ Prebuilt binaries for Linux and Windows; builds from source on macOS. No Rust to
 - Health checks (HTTP or TCP) gate every deploy.
 - Stable port allocation per project across deploys.
 - Survives reboots: deployed containers restart automatically after a Pi power-cycle (`restart: unless-stopped`); a deliberate `rpi stop` stays stopped.
-- Lifecycle commands: `rpi logs -f`, `rpi stats -w` (live TUI with history sparklines), start/stop/restart.
+- Lifecycle commands: `rpi logs -f`, `rpi stats -w` (live dashboard TUI — CPU / memory / temperature cards with mini charts and a per-service table with status pills and memory bars), start/stop/restart.
 - One-off commands (migrations, backups) declared in `rpi.toml`, run inside the container.
 - Installs in seconds: prebuilt binary for Linux and Windows via `npm install -g` — no toolchain or Docker on your machine (macOS builds from source).
 - Live deploy pipeline: fetch → build → start → health → route → gc, each stage collapsing to a timed summary, with a service count in the final stamp.
