@@ -235,7 +235,27 @@ cached — was already current). A deploy can look complete (`rpi deploy` succee
 updates instantly) while the page actually renders with stale CSS/JS/fonts for every visitor
 until the cache clears on its own.
 
-After every deploy that touched `src/styles.css`, `src/copy.js`, or `src/assets/**`:
+**The common release case needs no purge — and no Cloudflare token.** A version-sync
+release usually touches only `src/index.html`, the discovery files, and `src/assets/og.png`.
+`index.html` and the discovery files (`llms.txt`, `sitemap.xml`, `robots.txt`) are served
+`Cf-Cache-Status: DYNAMIC` — never edge-cached — so they update the instant the origin
+deploys. `og.png` is exempt too, but for a different reason: nothing ever links to the bare
+`/assets/og.png`; it is referenced only through the `og:image` URL's `?v=<version>`
+cache-bust param (Auditor 1, step 1). Bumping that param every release makes the reference a
+brand-new URL that misses the edge cache and fetches the freshly-deployed image, so the
+stale bytes cached under the old `?v=` are never served to anyone — the `?v=` bump *is* the
+purge, done at author time without touching Cloudflare. (Verified after the v0.22.0 deploy:
+`/assets/og.png?v=0.22.0` returned the new 68089-byte hero on a `Cf-Cache-Status: HIT`,
+byte-identical to the locally regenerated file.) So when a deploy changes only `index.html`,
+the discovery files, and `og.png`, **skip the purge entirely** — there is nothing stale to
+clear, and the Cloudflare API token (which lives with the account owner, not in this repo) is
+not needed. This is the escape hatch when you don't hold the token: keep asset changes to
+`og.png` (already `?v=`-guarded) and `index.html`/discovery files, and no purge is required.
+
+A purge is required **only** when the deploy changes a hashless cached asset that IS
+referenced by a stable, un-versioned path: `src/styles.css`, `src/copy.js`,
+`assets/favicon.svg`, or an `assets/fonts/*.woff2`. Those have no `?v=` guard, so the edge
+keeps serving pre-deploy bytes until the TTL expires. After such a deploy:
 
 1. Purge Cloudflare's cache for this zone — dashboard (`Caching → Configuration → Purge
    Cache`, "Purge Everything" is fine for a site this size) or the API:
