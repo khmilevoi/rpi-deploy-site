@@ -129,8 +129,8 @@ code { font-family: var(--font-term); }
   color: var(--muted);
 }
 
-.nav-links a:not(.nav-github) { position: relative; padding-bottom: 2px; }
-.nav-links a:not(.nav-github)::after {
+.nav-links a { position: relative; padding-bottom: 2px; }
+.nav-links a::after {
   content: "";
   position: absolute;
   left: 0; right: 100%; bottom: -2px;
@@ -138,17 +138,10 @@ code { font-family: var(--font-term); }
   background: var(--grad);
   transition: right .25s ease;
 }
-.nav-links a:not(.nav-github):hover { color: var(--text); }
-.nav-links a:not(.nav-github):hover::after { right: 0; }
-
-.nav-github {
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 5px 11px;
-  transition: border-color .2s ease;
-}
-.nav-github:hover { border-color: var(--raspberry); }
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { right: 0; }
+.nav-links .nav-docs { color: var(--text); }
+.nav-docs span { color: var(--raspberry-a11y); }
 
 /* ================= hero ================= */
 .hero {
@@ -568,6 +561,7 @@ code { font-family: var(--font-term); }
 
 @media (max-width: 640px) {
   .nav { padding: 14px 20px; }
+  .nav-links { gap: 12px; }
   .hero { padding: 48px 20px 44px; gap: 32px; }
   .hero h1 { font-size: 27px; }
   .hero-copy { flex: 1 1 100%; }
@@ -578,5 +572,5 @@ code { font-family: var(--font-term); }
 }
 
 @media (max-width: 480px) {
-  .nav-links a:not(.nav-github) { display: none; }
+  .nav-links a:not(.nav-docs) { display: none; }
 }
