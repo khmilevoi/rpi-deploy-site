@@ -9,7 +9,7 @@
 <meta property="og:url" content="https://rpi.iiskelo.com/">
 <meta property="og:title" content="rpi-deploy — deploy to your Raspberry Pi with one command">
 <meta property="og:description" content="Builds and runs your Docker Compose projects on the Pi — over plain SSH. No registry, no Kubernetes, no YAML pipelines.">
-<meta property="og:image" content="https://rpi.iiskelo.com/assets/og.png?v=0.23.0">
+<meta property="og:image" content="https://rpi.iiskelo.com/assets/og.png?v=0.24.0">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0b0d">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -66,7 +66,7 @@
 <span class="g2">▓▓▓▓▓▓</span>  deploy · rpi-deploy-site
 <span class="g3">▓▓▓▓</span>
 <span class="g4">██</span></span>
-<span class="tline"><span class="raspberry">▸</span> agent 0.23.0 (api v1)</span>
+<span class="tline"><span class="raspberry">▸</span> agent 0.24.0 (api v1)</span>
 <span class="tline"><span class="raspberry">▸</span> deployment 3f9c21a4-8b7e-4c2a-9f1d-2e6a5b0c7d84 started; streaming logs:</span>
 <span class="tline"><span class="green">✓</span> fetch <span class="muted">(1.4s)</span></span>
 <span class="tline">fetched 4f2a91c</span>
@@ -168,6 +168,11 @@
         <h3>Deploy-key preflight</h3>
         <p>First deploy of a private repo won't fail on a missing key — <code>rpi</code> registers a read-only GitHub deploy key for you, or shows it and waits.</p>
       </div>
+      <div class="card feature">
+        <span class="dchip" aria-hidden="true"></span>
+        <h3>Environment overlays</h3>
+        <p><code>rpi deploy --env &lt;name&gt;</code> spins up a shared <code>test</code> environment or an ephemeral per-branch preview from an <code>rpi.&lt;env&gt;.toml</code> overlay — its own hostname, an optional TTL that self-destructs it, and a one-time <code>on_create</code> hook.</p>
+      </div>
     </div>
   </section>
 
@@ -181,7 +186,7 @@
           <pre class="qs-code"><span class="green">$</span> npm install -g rpi-deploy
 <span class="faint"># prebuilt binary, no toolchain</span>
 <span class="green">$</span> rpi --version
-rpi 0.23.0</pre>
+rpi 0.24.0</pre>
           <button type="button" class="copy-btn" data-copy="npm install -g rpi-deploy" aria-label="Copy step 1 command">⧉</button>
         </div>
       </div>

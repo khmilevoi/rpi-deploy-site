@@ -31,6 +31,7 @@ Prebuilt binaries for Linux and Windows; builds from source on macOS. No Rust to
 - Client-triggered agent updates: `rpi upgrade` brings the Pi's agent binary up to your CLI's version over SSH (download → SHA-256 verify → atomic swap → restart), no manual SSH session.
 - Live deploy pipeline: fetch → build → start → health → route → gc, each stage collapsing to a timed summary, with a service count in the final stamp.
 - Deploy-key preflight: registers a read-only GitHub deploy key for private repos on first deploy.
+- Environment overlays: `rpi deploy --env <name>` deploys a project's shared `test` environment or an ephemeral per-branch preview from an `rpi.<env>.toml` overlay next to the base `rpi.toml`, with its own hostname, an optional TTL that auto-expires it, and a one-time `on_create` hook; `rpi env ls/destroy/reset-data` manage the deployed set, and `rpi config show` prints the resolved config.
 
 ## Docs
 

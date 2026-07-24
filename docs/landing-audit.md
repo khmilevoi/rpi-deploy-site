@@ -110,11 +110,17 @@ Sources of truth (pi repo) — read these, don't guess:
   failure, `· <stage> skipped` when skipped; lines emitted between stages print plain.
 - `crates/application/src/deploy.rs` `run_stages` — the real stage order and plain lines.
   Stages: **fetch** → **build** → **start** → **health** → **route** (only when
-  `[ingress].hostname` is set) → **gc** (always, last). Plain lines: `fetched <sha>` after
-  fetch; `secrets injected (<k> keys, <f> files)` **only when the project has
-  `[secrets]`**; a `project '<name>': host port <n>` line is emitted first but lands in
-  the pre-stage pane that is cleared on the first stage event, so it does **not** appear
-  in the final output.
+  `[ingress].hostname` is set) → **on_create** (only for an environment deploy whose
+  overlay set `on_create` and whose registry row hasn't run it yet — first successful
+  deploy of that environment key only) → **gc** (always, last). Plain lines: `fetched
+  <sha>` after fetch; `secrets injected (<k> keys, <f> files)` **only when the project has
+  `[secrets]`**; `on_create '<cmd>' completed` after a successful on_create stage; a
+  `project '<name>': host port <n>` line is emitted first but lands in the pre-stage pane
+  that is cleared on the first stage event, so it does **not** appear in the final output.
+  This site's own `rpi.toml` has no `[environment]` section, so its real deploy transcript
+  never shows `on_create` — the canonical transcript below is still exactly right for this
+  project — but audit any *other* `rpi.toml` that does use `--env`/`on_create` against the
+  full stage list, not just the six-stage happy path.
 - `crates/bin/src/cli/commands.rs` `deploy()` — the two status lines
   `▸ agent <version> (api <api>)` and `▸ deployment <uuid> started; streaming logs:`. The
   agent `version` is `CARGO_PKG_VERSION` (e.g. `0.17.1`, no `v`); `api` is the string `v1`
@@ -180,7 +186,8 @@ Check each against the code above:
 
 Capabilities and configuration shown on the page vs what the tool does today.
 
-1. Features grid (10 cards) vs the pi README "Highlights" section and the opening
+1. Features grid (count varies by release — check the current card count, don't assume a
+   fixed number) vs the pi README "Highlights" section and the opening
    paragraph. Two directions:
    - Each card's claim still accurate (queue semantics, secrets, tunnel ingress, health
      checks, port allocation, logs/stats/lifecycle, one-off commands, prebuilt installs).
